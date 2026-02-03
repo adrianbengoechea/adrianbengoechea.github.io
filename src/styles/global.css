@@ -1,8 +1,12 @@
-/* :root {
+:root {
+  --font-primary: 'Inter', sans-serif;
+  --font-heading: 'Montserrat', serif;
+  --font-button: 'SN Pro', sans-serif;
   --bg: #0f172a;
   --fg: #e5e7eb;
   --accent: #38bdf8;
-} */
+  --light: #f3f4f6;
+}
 
 /* :root {
   --bg: rgba(207, 199, 210);
@@ -16,11 +20,11 @@
   --accent: rgba(255, 64, 0);
 } */
 
-:root {
+/* :root {
   --bg: rgba(4, 15, 22);
   --fg: rgba(235, 242, 250);
   --accent: rgba(255, 208, 70);
-}
+} */
 
 
 
@@ -47,7 +51,23 @@ a {
 }
 
 section {
-  padding: 4rem 6rem;
+  padding: 7rem 8rem 7rem 7rem;
   max-width: initial;
   margin: auto;
+}
+
+p, li, div, label, a{
+  font-family: var(--font-primary);
+  line-height: 1.6;
+  font-size: 1rem;
+}
+
+h1, h2, h3 , h4, h5, h6 {
+  margin: 0;
+  font-weight: 700;
+  font-family: var(--font-heading);
+}
+
+main > *{
+  min-height: 100vh;
 }
