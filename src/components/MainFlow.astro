@@ -1,0 +1,20 @@
+---
+import Aside from './Aside.astro';
+import Content from './Content.astro';
+---
+
+<section id="home" style="min-height:100vh;display:flex;">
+  <Aside />
+  <Content />
+</section>
+
+<style>
+  section{
+    max-width: 1300px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    position: relative;
+    display: flex;
+    gap: 0 2rem;
+  }
+</style>

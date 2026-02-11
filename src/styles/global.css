@@ -1,33 +1,15 @@
+@import '@fortawesome/fontawesome-free/css/all.min.css';
+
 :root {
   --font-primary: 'Inter', sans-serif;
-  --font-heading: 'Montserrat', serif;
+  --font-heading: 'Space Grotesk', sans-serif;
   --font-button: 'SN Pro', sans-serif;
   --bg: #0f172a;
   --fg: #e5e7eb;
+  --text: rgb(148, 163, 184);
   --accent: #38bdf8;
   --light: #f3f4f6;
 }
-
-/* :root {
-  --bg: rgba(207, 199, 210);
-  --fg: rgba(10, 9, 8);
-  --accent: rgba(111, 124, 18);
-} */
-
-/* :root {
-  --bg: rgba(254, 239, 221);
-  --fg: rgba(32, 30, 31);
-  --accent: rgba(255, 64, 0);
-} */
-
-/* :root {
-  --bg: rgba(4, 15, 22);
-  --fg: rgba(235, 242, 250);
-  --accent: rgba(255, 208, 70);
-} */
-
-
-
 
 
 * {
@@ -41,7 +23,11 @@ html {
 body {
   margin: 0;
   font-family: system-ui, sans-serif;
-  background: var(--bg);
+  background:
+    radial-gradient(ellipse at 30% 20%, rgba(56, 189, 248, 0.08) 0%, transparent 50%),
+    radial-gradient(ellipse at 70% 80%, rgba(56, 189, 248, 0.06) 0%, transparent 50%),
+    radial-gradient(ellipse at 50% 0%, rgba(255, 255, 255, 0.03) 0%, transparent 40%),
+    linear-gradient(160deg, #0a1628 0%, #0f172a 40%, #131f36 70%, #0d1322 100%);
   color: var(--fg);
 }
 
@@ -51,21 +37,49 @@ a {
 }
 
 section {
-  padding: 7rem 8rem 7rem 7rem;
-  max-width: initial;
-  margin: auto;
+  /* padding: 7rem 8rem 7rem 7rem; */
+  /* max-width: initial;
+  margin: auto; */
+}
+
+body.intro-finished section{
+  opacity: 1;
+  visibility: visible;
+  transition: all 0.3s 0.4s ease-in-out;
+}
+section{
+  opacity: 0;
+  visibility: hidden;
 }
 
 p, li, div, label, a{
   font-family: var(--font-primary);
   line-height: 1.6;
   font-size: 1rem;
+  color: var(--text)
+}
+
+a{
+  font-weight: 400;
+  color: var(--light);
+  transition: all .4s .0s ease;
+}
+a:hover{
+  color: var(--accent);
 }
 
 h1, h2, h3 , h4, h5, h6 {
   margin: 0;
   font-weight: 700;
   font-family: var(--font-heading);
+  color: var(--light);
+  /* letter-spacing: -1px; */
+}
+
+h1, .h1{
+  font-size: 3rem;
+  line-height: 1.6;
+  font-weight: 700;
 }
 
 main > *{

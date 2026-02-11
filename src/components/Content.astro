@@ -1,0 +1,22 @@
+---
+import About from './content/About.astro';
+import Projects from './content/Projects.astro';
+import Contact from './content/Contact.astro';
+---
+
+<div class="wrapper">
+  <About />
+  <Projects />
+  <Contact />
+</div>
+
+<style>
+  .wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 4rem;
+    padding: 7.25rem 2rem;
+    max-width: 1300px;
+    margin: 0 auto;
+  }
+</style>
