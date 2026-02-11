@@ -1,8 +1,47 @@
+---
+import ProjectCard from '../elements/ProjectCard.astro';
+import cernySmithThumb from '../../assets/projects/cerny-smith.png';
+
+const projects = {
+  list: [
+    {
+      name: "Cerny Smith",
+      description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+      thumbnail: cernySmithThumb,
+      date: "August - October 2025",
+      link: "https://cernysmith.com/"
+    },
+  ]
+}
+
+---
 <section id="projects">
   <h2>Projects</h2>
   <ul>
-    <li>Market2Mint Order Tracker (WooCommerce)</li>
-    <li>Custom Shopify Apps</li>
-    <li>High-performance WordPress themes</li>
+    {projects.list.map((project) => (
+      <li>
+        <ProjectCard
+          name={project.name}
+          description={project.description}
+          thumbnail={project.thumbnail}
+          date={project.date}
+          link={project.link}
+        />
+      </li>
+    ))}
   </ul>
 </section>
+
+<style>
+  ul{
+     list-style: none;
+     display: flex;
+     flex-direction: column;
+     gap : 0.5rem;
+     padding: 0;
+     margin: 1rem 0 0;
+  }
+  ul li{
+    width: 100%; 
+  }
+</style>
