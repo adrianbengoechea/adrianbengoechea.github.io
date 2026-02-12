@@ -20,6 +20,12 @@ html {
   scroll-behavior: smooth;
 }
 
+@media (max-width: 991px) {
+  html {
+    font-size: 14px;
+  }
+}
+
 body {
   margin: 0;
   font-family: system-ui, sans-serif;

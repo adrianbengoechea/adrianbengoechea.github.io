@@ -5,9 +5,16 @@ console.log(currentYear);
 ---
 
 <footer style="margin-top: auto;">
-  <p><small>Built with Node.js & Astro — © {currentYear} Adrian Bengoechea</small></p>
+  <p><small>Built with Astro — © {currentYear} Adrian Bengoechea</small></p>
 </footer>
+
 <style>
+  @media (max-width: 991px) {
+    footer p{
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+  }
   p{
     margin-top: 1.2rem;
   }

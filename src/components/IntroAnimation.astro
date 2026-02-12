@@ -63,8 +63,18 @@
     const introAnimation = () => {
         const section = document.querySelector('section')!;
 
+        
+
         setTimeout(() => {
             document.body.classList.add('intro-finished');
+
+            if( window.innerWidth < 991 ){
+                section.classList.add('hiding');
+                setTimeout(function(){
+                    section.classList.add('hidden');
+                }, 300);
+                return;
+            }
 
             const introTitle = section.querySelector('.h1')!;
             const mainTitle = document.querySelector('#main-title')!;
@@ -73,9 +83,10 @@
             const mainRect = mainTitle.getBoundingClientRect();
             const sectionRect = section.getBoundingClientRect();
 
-            // Account for scale 1.4 → 1.0: visual edges shift inward
             const scaleShiftX = (introRect.width - introRect.width / 2.4) / 2;
             const scaleShiftY = (introRect.height - introRect.height / 2.4) / 2;
+
+            
 
             // Target section position so intro h1 lands on main title
             const targetTop = sectionRect.top + (mainRect.top - introRect.top) - scaleShiftY;
@@ -116,6 +127,24 @@
     }
     section .h1{
         transform: scale(2.4);
+    }
+    @media (max-width: 991px) {
+        section{
+            width: 100%;
+        }
+        section.hiding{
+            opacity: 0;
+            transition: opacity .3s .0s ease, display .0s .3s linear;
+        }
+        section.hidden{
+            display: none;
+
+        }
+        section .h1{
+            transform: scale(1.0);
+            width: 100%;
+            font-size: 3rem;
+        }
     }
     body.intro-finished section .h1{
         transform: scale(1);
