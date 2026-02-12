@@ -5,12 +5,12 @@
     <ul>
         <div class="hover-indicator"></div>
         <div class="active-indicator"></div>
-        <li class="active">
-            <a href="#"><i class="fa-solid fa-user"></i><span>About Me</span></a>
+        <li class="active" data-section="about">
+            <a href="#about"><i class="fa-solid fa-user"></i><span>About Me</span></a>
         </li>
-        <li><a href="#"><i class="fa-solid fa-briefcase"></i><span>Experience</span></a></li>
-        <li><a href="#"><i class="fa-solid fa-diagram-project"></i><span>Projects</span></a></li>
-        <li><a href="#"><i class="fa-solid fa-envelope"></i><span>Contact</span></a></li>
+        <li data-section="experience"><a href="#experience"><i class="fa-solid fa-briefcase"></i><span>Experience</span></a></li>
+        <li data-section="projects"><a href="#projects"><i class="fa-solid fa-diagram-project"></i><span>Projects</span></a></li>
+        <li data-section="contact"><a href="#contact"><i class="fa-solid fa-envelope"></i><span>Contact</span></a></li>
     </ul>
 </nav>
 
@@ -18,9 +18,13 @@
     document.addEventListener('DOMContentLoaded', () => {
         const nav = document.querySelector('nav')!;
         const ul = nav.querySelector('ul')!;
-        const items = ul.querySelectorAll('li');
+        const items = ul.querySelectorAll<HTMLLIElement>('li[data-section]');
         const hoverIndicator = ul.querySelector('.hover-indicator') as HTMLElement;
         const activeIndicator = ul.querySelector('.active-indicator') as HTMLElement;
+
+        const sectionNames = ['about', 'experience', 'projects', 'contact'];
+        let scrollLocked = false;
+        let scrollLockTimer: ReturnType<typeof setTimeout>;
 
         function positionIndicator(indicator: HTMLElement, li: Element) {
             const ulRect = ul.getBoundingClientRect();
@@ -28,6 +32,16 @@
             indicator.style.top = (liRect.top - ulRect.top) + 'px';
             indicator.style.height = liRect.height + 'px';
             indicator.style.width = liRect.width + 'px';
+        }
+
+        function setActive(sectionName: string) {
+            items.forEach(item => item.classList.remove('active'));
+            const target = ul.querySelector(`li[data-section="${sectionName}"]`);
+            if (target) {
+                target.classList.add('active');
+                positionIndicator(activeIndicator, target);
+                activeIndicator.style.opacity = '1';
+            }
         }
 
         // Position active indicator on load
@@ -44,13 +58,26 @@
                 hoverIndicator.style.opacity = '1';
             });
 
-            // Click: move active state
+            // Click: smooth-scroll to section, lock scroll-spy during animation
             li.addEventListener('click', (e) => {
                 e.preventDefault();
-                items.forEach(item => item.classList.remove('active'));
-                li.classList.add('active');
-                positionIndicator(activeIndicator, li);
-                activeIndicator.style.opacity = '1';
+                const section = li.dataset.section;
+                if (!section) return;
+
+                // Lock scroll-spy so it doesn't fight the smooth scroll
+                scrollLocked = true;
+                clearTimeout(scrollLockTimer);
+                scrollLockTimer = setTimeout(() => {
+                    scrollLocked = false;
+                    currentSection = section;
+                }, 800);
+
+                setActive(section);
+
+                const anchor = document.querySelector(`a[name="${section}"]`) as HTMLElement;
+                if (anchor) {
+                    anchor.scrollIntoView({ behavior: 'smooth' });
+                }
             });
         });
 
@@ -58,6 +85,58 @@
         ul.addEventListener('mouseleave', () => {
             hoverIndicator.style.opacity = '0';
         });
+
+        // Scroll-spy via scroll listener + rAF throttle
+        const anchors = sectionNames
+            .map(name => document.querySelector(`a[name="${name}"]`))
+            .filter(Boolean) as HTMLElement[];
+
+        const sections = anchors.map(a => a.closest('section')).filter(Boolean) as HTMLElement[];
+
+        const sectionToName = new Map<HTMLElement, string>();
+        anchors.forEach((a, i) => {
+            const section = sections[i];
+            if (section) sectionToName.set(section, a.getAttribute('name')!);
+        });
+
+        let currentSection = '';
+        let ticking = false;
+
+        function updateActiveOnScroll() {
+            if (scrollLocked) {
+                ticking = false;
+                return;
+            }
+
+            // Reference line at 30% from the top of the viewport
+            const trigger = window.innerHeight * 0.3;
+            let active = sectionNames[0]; // default to first
+
+            for (let i = sections.length - 1; i >= 0; i--) {
+                const rect = sections[i].getBoundingClientRect();
+                if (rect.top <= trigger) {
+                    active = sectionToName.get(sections[i]) || active;
+                    break;
+                }
+            }
+
+            if (active !== currentSection) {
+                currentSection = active;
+                setActive(active);
+            }
+
+            ticking = false;
+        }
+
+        window.addEventListener('scroll', () => {
+            if (!ticking) {
+                ticking = true;
+                requestAnimationFrame(updateActiveOnScroll);
+            }
+        }, { passive: true });
+
+        // Run once on load
+        updateActiveOnScroll();
     });
 </script>
 
@@ -146,6 +225,7 @@
     nav li.active a,
     nav li.active a i{
         color: var(--bg);
+        transition: color 0.3s 0.1s ease;
         font-weight: 600;
     }
 </style>
