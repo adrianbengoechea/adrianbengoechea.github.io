@@ -12,7 +12,7 @@ Personal portfolio website for Adrian Beng, built as a single-page application w
 - **TypeScript** — strict mode (`astro/tsconfigs/strict`)
 - **Vanilla CSS** — custom properties for design tokens, no preprocessor or framework
 - **Vanilla JS** — client-side interactions (no frontend framework)
-- **Fonts**: Inter (body), Montserrat (headings), SN Pro (buttons) via Google Fonts
+- **Fonts**: Inter (body), Space Grotesk (headings), SN Pro (buttons) via Google Fonts
 
 ## Commands
 
@@ -26,18 +26,24 @@ No test suite is configured.
 
 ## Architecture
 
-Single page (`src/pages/index.astro`) using `BaseLayout.astro` with section components:
+Single page (`src/pages/index.astro`) using `BaseLayout.astro` with section components organized in nested folders:
 
 ```
 BaseLayout.astro
-├── Intro.astro          # Intro/loading screen (fixed, z-index: 3)
-├── FloatingShapes.astro # Animated background shapes (z-index: -1)
-├── Header.astro         # Floating magnetic menu button (fixed, z-index: 20)
-└── <main>
+├── IntroAnimation.astro      # Intro/loading screen (fixed, z-index: 3)
+├── FloatingShapes.astro       # Animated background shapes (z-index: -1)
+├── Aside (sidebar)
+│   ├── MainTitle.astro
+│   ├── Navigation.astro
+│   └── Socials.astro
+└── Content (main)
+    ├── Intro.astro
     ├── Hero.astro
     ├── About.astro
+    ├── Experience.astro
     ├── Projects.astro
-    └── Contact.astro
+    ├── Contact.astro
+    └── Footer.astro
 ```
 
 ## Key Conventions
