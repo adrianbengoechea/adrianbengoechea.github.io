@@ -1,25 +1,29 @@
 ---
-    import type { ImageMetadata } from 'astro';
+import type { ImageMetadata } from "astro";
 
-    export interface Props {
-        name: string;
-        description: string;
-        thumbnail: ImageMetadata;
-        date: string;
-        link: string;
-    }
+export interface Props {
+    name: string;
+    description: string;
+    thumbnail: string;
+    date: string;
+    link: string;
+}
 
-    const props = Astro.props as Props;
+const props = Astro.props as Props;
 ---
+
 <div class="project-card">
     <span class="hover"></span>
     <a href={props.link} target="_blank" rel="noopener noreferrer">
         <div class="wrapper">
             <figure class="project-card--thumbnail">
-                <img src={props.thumbnail.src} alt={props.name} />
+                <img src={props.thumbnail} alt={props.name} />
             </figure>
             <div class="project-card--details">
-                <h2>{props.name} <i class="fa-solid fa-arrow-up-right-from-square"></i></h2>
+                <h2>
+                    {props.name}
+                    <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                </h2>
                 <p>{props.description}</p>
                 <small class="project-card--date">{props.date}</small>
             </div>
@@ -51,12 +55,12 @@
         box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     }
 
-    .project-card span.hover{
+    .project-card span.hover {
         position: absolute;
         top: 50%;
         left: 50%;
         width: calc(100% + 2.25rem);
-        height: calc(100% + 2rem);
+        height: calc(100% + 0.4rem);
         background: rgba(255, 255, 255, 0.5);
         opacity: 0;
         transition: opacity 0.2s ease;
@@ -68,12 +72,15 @@
         opacity: 0.1;
     }
 
-    .project-card--details{}
-    .project-card--details h2{
+    .project-card--details h2 {
+        margin-bottom: 5px;
+        margin-top: 5px;
+    }
+    .project-card--details h2 {
         font-size: 1.25rem;
     }
 
-    .project-card--details h2 i{
+    .project-card--details h2 i {
         font-size: 1rem;
     }
 
@@ -84,13 +91,14 @@
     .project-card--details p:last-of-type {
         margin-bottom: 0rem;
     }
-    
+
     .project-card--details p {
         font-size: 0.875rem;
     }
 
-    .project-card--thumbnail{
-        width: 100%;
+    .project-card--thumbnail {
+        width: 150px;
+        min-width: 150px;
         max-width: 150px;
         margin: 0;
         border-radius: 0.5rem;
@@ -98,7 +106,7 @@
         height: auto;
         margin-bottom: auto;
         margin-top: auto;
-        aspect-ratio: 1/.75;
+        aspect-ratio: 1/0.75;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -114,11 +122,12 @@
         /* padding: 1rem; */
     }
 
-    small{
+    small {
         display: block;
         font-size: 0.75rem;
         color: var(--light);
-        margin-top: 0.75rem;
+        margin-top: 0.5rem;
+        margin-bottom: 0.5rem;
         font-weight: 500;
         text-transform: uppercase;
         font-family: var(--font-heading);
