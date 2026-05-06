@@ -1,105 +1,133 @@
-@import '@fortawesome/fontawesome-free/css/all.min.css';
+@import "@fortawesome/fontawesome-free/css/all.min.css";
 
 :root {
-  --font-primary: 'Inter', sans-serif;
-  --font-heading: 'Space Grotesk', sans-serif;
-  --font-button: 'SN Pro', sans-serif;
-  --bg: #0f172a;
-  --fg: #e5e7eb;
-  --text: rgb(148, 163, 184);
-  --accent: #38bdf8;
-  --light: #f3f4f6;
+    --font-primary: "Inter", sans-serif;
+    --font-heading: "Space Grotesk", sans-serif;
+    --font-button: "SN Pro", sans-serif;
+    --bg: #0f172a;
+    --fg: #e5e7eb;
+    --text: rgb(168, 183, 204);
+    --accent: #38bdf8;
+    --light: #f3f4f6;
 }
 
-
 * {
-  box-sizing: border-box;
+    box-sizing: border-box;
 }
 
 html {
-  scroll-behavior: smooth;
+    scroll-behavior: smooth;
 }
 
 @media (max-width: 991px) {
-  html {
-    font-size: 14px;
-  }
+    html {
+        font-size: 14px;
+    }
 }
 
 body {
-  margin: 0;
-  font-family: system-ui, sans-serif;
-  background:
-    radial-gradient(ellipse at 30% 20%, rgba(56, 189, 248, 0.08) 0%, transparent 50%),
-    radial-gradient(ellipse at 70% 80%, rgba(56, 189, 248, 0.06) 0%, transparent 50%),
-    radial-gradient(ellipse at 50% 0%, rgba(255, 255, 255, 0.03) 0%, transparent 40%),
-    linear-gradient(160deg, #0a1628 0%, #0f172a 40%, #131f36 70%, #0d1322 100%);
-  color: var(--fg);
+    margin: 0;
+    font-family: system-ui, sans-serif;
+    background:
+        radial-gradient(
+            ellipse at 30% 20%,
+            rgba(56, 189, 248, 0.08) 0%,
+            transparent 50%
+        ),
+        radial-gradient(
+            ellipse at 70% 80%,
+            rgba(56, 189, 248, 0.06) 0%,
+            transparent 50%
+        ),
+        radial-gradient(
+            ellipse at 50% 0%,
+            rgba(255, 255, 255, 0.03) 0%,
+            transparent 40%
+        ),
+        linear-gradient(
+            160deg,
+            #0a1628 0%,
+            #0f172a 40%,
+            #131f36 70%,
+            #0d1322 100%
+        );
+    color: var(--fg);
 }
 
 a {
-  color: var(--accent);
-  text-decoration: none;
+    color: var(--accent);
+    text-decoration: none;
 }
 
 section {
-  /* padding: 7rem 8rem 7rem 7rem; */
-  /* max-width: initial;
+    /* padding: 7rem 8rem 7rem 7rem; */
+    /* max-width: initial;
   margin: auto; */
 }
 
-body.intro-finished section{
-  opacity: 1;
-  visibility: visible;
-  transition: all 0.2s 0.3s ease-in-out;
+body.intro-finished section {
+    opacity: 1;
+    visibility: visible;
+    transition: all 0.2s 0.3s ease-in-out;
 }
-section{
-  opacity: 0;
-  visibility: hidden;
-}
-
-p, li, div, label, a{
-  font-family: var(--font-primary);
-  line-height: 1.6;
-  font-size: 1rem;
-  color: var(--text)
+section {
+    opacity: 0;
+    visibility: hidden;
 }
 
-a{
-  font-weight: 400;
-  color: var(--light);
-  transition: all .4s .0s ease;
-}
-a:hover{
-  color: var(--accent);
-}
-
-a.anchor{
-  display: block;
-  position: relative;
-  visibility: hidden;
-  height: 0;
-  top: -100px;
+p,
+li,
+div,
+label,
+a {
+    font-family: var(--font-primary);
+    line-height: 1.6;
+    font-size: 1rem;
+    color: var(--text);
 }
 
-h1, h2, h3 , h4, h5, h6 {
-  margin: 0;
-  font-weight: 700;
-  font-family: var(--font-heading);
-  color: var(--light);
-  /* letter-spacing: -1px; */
+a {
+    font-weight: 400;
+    color: var(--light);
+    transition: all 0.4s 0s ease;
+}
+a:hover {
+    color: var(--accent);
 }
 
-h1, .h1{
-  font-size: 3rem;
-  line-height: 1.6;
-  font-weight: 700;
+a.anchor {
+    display: block;
+    position: relative;
+    visibility: hidden;
+    height: 0;
+    top: -100px;
 }
 
-h2, .h2{
-  font-size: 2rem;
-  margin-bottom: 0.75rem;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    margin: 0;
+    font-weight: 700;
+    font-family: var(--font-heading);
+    color: var(--light);
+    /* letter-spacing: -1px; */
 }
-main > *{
-  min-height: 100vh;
+
+h1,
+.h1 {
+    font-size: 3rem;
+    line-height: 1.6;
+    font-weight: 700;
+}
+
+h2,
+.h2 {
+    font-size: 2rem;
+    margin-bottom: 0.75rem;
+}
+main > * {
+    min-height: 100vh;
 }
