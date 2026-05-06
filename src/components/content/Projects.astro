@@ -1,61 +1,98 @@
 ---
-import ProjectCard from '../elements/ProjectCard.astro';
-import cernySmithThumb from '../../assets/projects/cerny-smith.png';
+import ProjectCard from "../elements/ProjectCard.astro";
 
 const projects = {
-  list: [
-    {
-      name: "Cerny Smith",
-      description: "Rebuilt a legacy stress-management reporting system on WordPress, featuring quiz-based form submissions, member management with Head Coach and Coach roles, automated PDF report generation, and custom PayPal integration supporting one-time and subscription payments.",
-      thumbnail: cernySmithThumb,
-      date: "October - November 2025",
-      link: "https://cernysmith.com/"
-    },
-  ]
-}
+    list: [
+        {
+            name: "Cerny Smith",
+            description:
+                "Legacy stress-management reports system rebuilt into WordPress, allowing to take quiz submissions, members management as coach/head-coach, PDF generation, one-time/subscription purchases using PayPal Gateway, admin analytics for purchases/subscriptions.",
+            thumbnail: "/projects/01.png",
+            date: "November 2025",
+            link: "https://cernysmith.com/",
+        },
 
+        {
+            name: "GoodEatn",
+            description:
+                "Shopify store setup and animated theme rebuilt into native Shopiffy theme using Animate.js and CSS animations. Taking animations and all features from legacy design into Shopify including custom features and maintaining SEO scores.",
+            thumbnail: "/projects/02.png",
+            date: "May 2024",
+            link: "https://goodeatn.com/",
+        },
+
+        {
+            name: "Americor",
+            description:
+                "Debt relief solutions system mounted on WordPress. Custom pixel-perfect theme using Bootstrap CSS framework, Webpack and ACF, and including multiple custom forms connected to client’s API.",
+            thumbnail: "/projects/03.png",
+            date: "February 2023",
+            link: "https://americor.com/",
+        },
+
+        {
+            name: "VirgenLV",
+            description:
+                "Full animated WordPress custom theme for Virgen LV, including seamless page transitions, custom transitions, fully customizable content and high SEO performance.",
+            thumbnail: "/projects/04.png",
+            date: "October 2022",
+            link: "https://www.virgenlv.com/",
+        },
+    ],
+};
 ---
+
 <section>
-  <a name="projects" class="anchor"></a>
-  <h2>Projects</h2>
-  <ul>
-    {projects.list.map((project) => (
-      <li>
-        <ProjectCard
-          name={project.name}
-          description={project.description}
-          thumbnail={project.thumbnail}
-          date={project.date}
-          link={project.link}
-        />
-      </li>
-    ))}
-  </ul>
-  <div style="margin-top: 2rem" class="external-apps-link">
-    <a href="https://apps.adrianbeng.com" target="__blank" rel="noopener noreferrer">
-      <h3>Browse my apps portfolio <i class="fa-solid fa-arrow-up-right-from-square" style="font-size: 1rem;"></i></h3>
-    </a>
-  </div>
+    <a name="projects" class="anchor"></a>
+    <h2>Projects</h2>
+    <ul>
+        {
+            projects.list.map((project) => (
+                <li>
+                    <ProjectCard
+                        name={project.name}
+                        description={project.description}
+                        thumbnail={project.thumbnail}
+                        date={project.date}
+                        link={project.link}
+                    />
+                </li>
+            ))
+        }
+    </ul>
+    <div style="margin-top: 2rem" class="external-apps-link">
+        <a
+            href="https://apps.adrianbeng.com"
+            target="__blank"
+            rel="noopener noreferrer"
+        >
+            <h3>
+                Browse my apps portfolio <i
+                    class="fa-solid fa-arrow-up-right-from-square"
+                    style="font-size: 1rem;"></i>
+            </h3>
+        </a>
+    </div>
 </section>
 
 <style>
-  ul{
-     list-style: none;
-     display: flex;
-     flex-direction: column;
-     gap : 0.5rem;
-     padding: 0;
-     margin: 1rem 0 0;
-  }
-  ul li{
-    width: 100%; 
-  }
+    ul {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+        padding: 0;
+        margin: 1rem 0 0;
+    }
+    ul li {
+        width: 100%;
+    }
 
-  .external-apps-link a h3{
-    text-decoration: underline;
-    display: inline-block;
-  }
-  .external-apps-link a h3:hover{
-    text-decoration: none;
-  }
+    .external-apps-link a h3 {
+        text-decoration: underline;
+        display: inline-block;
+    }
+    .external-apps-link a h3:hover {
+        text-decoration: none;
+    }
 </style>
