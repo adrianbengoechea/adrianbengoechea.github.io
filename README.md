@@ -4,7 +4,7 @@
 
 Personal porfolio website focused on showing my skill set and experience in the previous years. Including sidebar for quick navigation and social links.
 
-[adrianbeng.com](./screenshot.png)
+![adrianbeng.com](./screenshot.png)
 
 ## Tech Stack
 
